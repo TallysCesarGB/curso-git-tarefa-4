@@ -1,3 +1,4 @@
+# .github/workflows/static.yml
 name: Deploy static content to Pages
 
 on:
@@ -24,12 +25,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verifica se o arquivo index.html existe
+      - name: Verificar se public/index.html existe
         run: |
           if [ ! -f public/index.html ]; then
-            echo "Arquivo public/index.html não encontrado!"
+            echo "Arquivo index.html não encontrado em public/"
             exit 1
           fi
+
+      - name: Verificar conteúdo da pasta public (debug)
+        run: ls -R public
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
